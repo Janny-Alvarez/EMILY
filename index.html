@@ -1,1 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Secreta</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .sobre {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background-color: #f8e5e5;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .tapa {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #e2c0c0;
+            border-radius: 10px;
+            cursor: pointer;
+            transform-origin: top;
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            color: #4a3838;
+            font-weight: bold;
+            user-select: none;
+            z-index: 2;
+            flex-direction: column;
+        }
+
+        .sobre.abierto .tapa {
+            transform: rotateX(180deg);
+        }
+
+        .hojas-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: top 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sobre.abierto .hojas-container {
+            top: 0;
+        }
+
+        .hoja {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .hoja.activa {
+            opacity: 1;
+            transform: translateY(0);
+            z-index: 1;
+        }
+
+        /* Imágenes */
+        .hoja img {
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        /* Colores de las hojas */
+        .hoja-colores #hoja-0 { background-color: #ffcccc; }
+        .hoja-colores #hoja-1 { background-color: #ffebcd; }
+        .hoja-colores #hoja-2 { background-color: #dcedc8; }
+        .hoja-colores #hoja-3 { background-color: #c8e6c9; }
+        .hoja-colores #hoja-4 { background-color: #bbdefb; }
+        .hoja-colores #hoja-5 { background-color: #e1bee7; }
+        .hoja-colores #hoja-6 { background-color: #fce4ec; }
+        .hoja-colores #hoja-7 { background-color: #fffde7; }
+        .hoja-colores #hoja-8 { background-color: #fbe9e7; }
+        .hoja-colores #hoja-9 { background-color: #efebe9; }
+        .hoja-colores #hoja-10 { background-color: #cfd8dc; }
+
+    </style>
+</head>
+<body>
+
+<div class="sobre" id="mi-sobre">
+    <div class="tapa">
+        Haz clic para abrir
+        <img src="https://i.pinimg.com/736x/14/e3/b1/14e3b1401e9b6b7ecbdd79e35fa2d108.jpg" alt="Osito tierno" class="final-image" style="max-width: 80%; height: auto; margin-top: 20px; border-radius: 8px;">
+    </div>
+    <div class="hojas-container hoja-colores">
+        <div class="hoja" id="hoja-0">
+            <img src="https://i.pinimg.com/1200x/3e/b2/4b/3eb24bb44ae7717b3abd8a1fc5530a3a.jpg" alt="Ramo de flores con corazón">
+            <h3>¡Confío en ti! ❤️</h3>
+            <p>¡Tú puedes, Emily! Estoy segura de que lo lograrás. 💪</p>
+        </div>
+
+        <div class="hoja" id="hoja-1">
+            <img src="https://i.pinimg.com/1200x/07/86/c3/0786c356f28be7bc78ae3a827dc9e592.jpg" alt="Sol brillante con nubes">
+            <h3>🌸 ¡Tú eres más fuerte de lo que crees!</h3>
+            <p>Cada paso que das te acerca más a lo que quieres, no te detengas. 💖</p>
+        </div>
+
+        <div class="hoja" id="hoja-2">
+            <img src="https://i.pinimg.com/1200x/9b/e0/2e/9be02ea51b4a6b8a57ab1e76e0be6dcd.jpg" alt="Corazones y destellos">
+            <h3>¡No hay límites para ti!</h3>
+            <p>A veces se siente difícil, pero tú eres capaz de superar cualquier cosa. ¡Lo sé! ✨</p>
+        </div>
+
+        <div class="hoja" id="hoja-3">
+            <img src="https://i.pinimg.com/1200x/e3/a7/db/e3a7db957e6708545153bdd76b914369.jpg" alt="Personas tomadas de la mano">
+            <h3>¡Vamos con todo, Emily!</h3>
+            <p>Recuerda que no se trata de hacerlo perfecto, solo de hacerlo con el corazón. ¡Confío en ti! 💪</p>
+        </div>
+
+        <div class="hoja" id="hoja-4">
+            <img src="https://i.pinimg.com/1200x/97/8a/7c/978a7ce02c27382b113deca1a958f995.jpg" alt="Paz y amor">
+            <h3>💫 Renace</h3>
+            <p>A veces la vida nos pone a prueba, pero siempre podemos renacer más fuertes. Lo mejor de ti está por venir.</p>
+        </div>
+
+        <div class="hoja" id="hoja-5">
+            <img src="https://i.pinimg.com/1200x/50/4f/21/504f214e426a8d83c5b0760672cebc06.jpg" alt="Arcoíris">
+            <h3>💪 ¡No te rindas!</h3>
+            <p>Sé que a veces puede ser abrumador, pero confía en que todo el esfuerzo valdrá la pena. ¡Vamos con todo! 💖</p>
+        </div>
+
+        <div class="hoja" id="hoja-6">
+            <img src="https://i.pinimg.com/1200x/3e/b2/4b/3eb24bb44ae7717b3abd8a1fc5530a3a.jpg" alt="Música">
+            <h3>🌼 ¡Confía en ti misma!</h3>
+            <p>Has llegado hasta aquí por algo, así que sigue confiando en ti misma. ¡Lo vas a lograr! 💖</p>
+        </div>
+
+        <div class="hoja" id="hoja-7">
+            <img src="https://i.pinimg.com/1200x/e3/a7/db/e3a7db957e6708545153bdd76b914369.jpg" alt="Estrellas y luna">
+            <h3>🌟 Sé tú</h3>
+            <p>No dejes que las dificultades cambien quién eres. Tu esencia es más fuerte que cualquier obstáculo. ¡Sigue siendo tú misma, porque eres increíble!</p>
+        </div>
+
+        <div class="hoja" id="hoja-8">
+            <img src="https://i.pinimg.com/1200x/07/86/c3/0786c356f28be7bc78ae3a827dc9e592.jpg" alt="Mano con corazón">
+            <h3>💖 Te quiero mucho, amiga.</h3>
+            <p>No importa lo que pase, siempre voy a estar aquí para ti. ¡Cuenta conmigo siempre!</p>
+        </div>
+
+        <div class="hoja" id="hoja-9">
+            <img src="https://i.pinimg.com/1200x/9b/e0/2e/9be02ea51b4a6b8a57ab1e76e0be6dcd.jpg" alt="Taza de café">
+            <h3>💫 Paso a paso</h3>
+            <p>No te preocupes por el futuro, solo da un paso a la vez. Estoy segura de que llegarás lejos.</p>
+        </div>
+
+        <div class="hoja" id="hoja-10">
+            <img src="https://i.pinimg.com/1200x/e3/a7/db/e3a7db957e6708545153bdd76b914369.jpg" alt="Burbujas de conversación">
+            <h3>💫 Lo lograrás</h3>
+            <p>Aunque no lo veas ahora, todo lo que estás viviendo te está llevando al lugar que mereces.</p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let hojaActual = 0;
+    const hojas = document.querySelectorAll('.hoja');
+    const sobre = document.getElementById('mi-sobre');
+    const tapa = document.querySelector('.tapa');
+    let cartaAbierta = false;
+
+    function abrirCarta() {
+        if (!cartaAbierta) {
+            sobre.classList.add('abierto');
+            cartaAbierta = true;
+            setTimeout(() => {
+                mostrarSiguienteHoja();
+            }, 500);
+        }
+    }
+
+    function mostrarSiguienteHoja() {
+        if (hojaActual < hojas.length) {
+            hojas[hojaActual].classList.add('activa');
+            hojaActual++;
+        } else {
+            // Reinicia la carta
+            reiniciarCarta();
+        }
+    }
+
+    function reiniciarCarta() {
+        // Oculta todas las hojas
+        hojas.forEach(hoja => hoja.classList.remove('activa'));
+        
+        // Cierra el sobre
+        sobre.classList.remove('abierto');
+        
+        // Reinicia las variables
+        hojaActual = 0;
+        cartaAbierta = false;
+
+        // Opcional: Cambia el texto de la tapa o añade una animación
+        tapa.textContent = 'Haz clic para abrir';
+    }
+
+    // Evento para abrir la carta
+    tapa.addEventListener('click', abrirCarta);
+
+    // Eventos para pasar de hoja
+    hojas.forEach((hoja, index) => {
+        hoja.addEventListener('click', () => {
+            hoja.classList.remove('activa');
+            setTimeout(() => {
+                mostrarSiguienteHoja();
+            }, 500);
+        });
+    });
+</script>
+
+</body>
+</html>
 
